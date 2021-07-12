@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  fakeapi: 'https://jsonplaceholder.typicode.com/'
+  flagapi: 'https://restcountries.eu/rest/v2/'
 
 };
 

@@ -4,36 +4,24 @@ import { catchError } from 'rxjs/operators';
 import { throwError as observableThrowError, Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Photo, Post } from './model';
+import { Flag} from './model';
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  private baseUrl = environment.fakeapi;
+  private baseUrl = environment.flagapi;
 
   constructor(
     private http: HttpClient
   ) {
   }
 
-  getPopularPosts(): Observable<Array<Post>> {
-    return this.http.get<Array<Post>>(this.baseUrl + 'posts').pipe(
+
+  getFlags(): Observable<Array<Flag>> {
+    return this.http.get<Array<Flag>>(this.baseUrl+'region/europe' ).pipe(
       catchError(this.errorHandler)
     );
   }
-
-  insertPost(post: Post): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'posts', post).pipe(
-      catchError(this.errorHandler)
-    );
-  }
-
-  updatePost(post: Post): Observable<any> {
-    return this.http.put<any>(this.baseUrl + 'posts/' + post.id, post).pipe(
-      catchError(this.errorHandler)
-    );
-  }
-
 
   private errorHandler(error: HttpErrorResponse) {
     return observableThrowError(error || 'Server Error');

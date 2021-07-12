@@ -1,0 +1,10 @@
+.dark-mode {
+  background: #000;
+  color: #fff;
+}
+.dark-mode .card,
+.dark-mode .bg-light,
+.dark-mode button {
+  background-color: #333 !important;
+  color: #fff;
+}
